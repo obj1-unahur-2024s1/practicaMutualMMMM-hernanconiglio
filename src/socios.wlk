@@ -3,8 +3,8 @@ import actividades.*
 class Socio {
 	const actividades = []
 	var property maximoActividades
-	var edad
-	const idiomas = #{}
+	var property edad
+	const property idiomas = #{}
 	
 	method esAdoradorDelSol() = actividades.all({a=>a.sirveParaBroncearse()})
 	method actividadesEsforzadas() = actividades.filter({a=>a.implicaEsfuerzo()})

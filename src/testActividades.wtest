@@ -1,0 +1,168 @@
+import actividades.*
+
+describe "Test de viaje de playa"{
+	
+	const viajeDePlaya1 = new ViajeDePlaya(idiomas = #{"Espaniol","Aleman","Ingles"},largoPlaya = 500)
+	
+	test "El idioma del viaje de playa debe ser espaniol, aleman e ingles"{
+		
+		assert.equals(#{"Espaniol","Aleman","Ingles"}, viajeDePlaya1.idiomas())
+	}
+	
+	test "La cantidad de dias de los viajes de playa deben ser 1"{
+		
+		assert.equals(1, viajeDePlaya1.diasDeActividad())
+		
+	}
+	
+	test "El viaje no debe de implicar esfuerzo"{
+		
+		assert.notThat(viajeDePlaya1.implicaEsfuerzo())
+		
+	}
+	
+	test "El viaje debe servir para broncearse"{
+		
+		assert.that(viajeDePlaya1.sirveParaBroncearse())
+		
+	}
+	
+	test "El viaje deberia ser interesante"{
+		assert.that(viajeDePlaya1.esInteresante())
+	}
+}
+
+describe "Test de viaje de Excursion"{
+	
+	const viajeDeExcursion1 = new ExcursionACiudad(idiomas =#{"Frances","Aleman","Hungaro"},cantAtracciones = 4)
+	
+	test "El idioma del viaje de excursion debe ser Feances, aleman y hungaro"{
+		
+		assert.equals(#{"Frances","Aleman","Hungaro"}, viajeDeExcursion1.idiomas())
+	}
+	
+	test "La cantidad de dias de los viajes de excursion deben ser 2"{
+		
+		assert.equals(2, viajeDeExcursion1.diasDeActividad())
+		
+	}
+	
+	test "El viaje no debe de implicar esfuerzo"{
+		
+		assert.notThat(viajeDeExcursion1.implicaEsfuerzo())
+		
+	}
+	
+	test "El viaje debe servir para broncearse"{
+		
+		assert.notThat(viajeDeExcursion1.sirveParaBroncearse())
+		
+	}
+	
+	test "El viaje deberia ser interesante"{
+		assert.that(viajeDeExcursion1.esInteresante())
+	}
+}
+
+describe "Test de viaje de Excursion Tropical"{
+	
+	const viajeDeExcursionTropical1 = new ExcursionTropical(idiomas =#{"Frances","Aleman","Hungaro"},cantAtracciones = 4)
+	
+	test "El idioma del viaje de excursion tropical debe ser Italiano"{
+		
+		assert.equals(#{"Frances","Aleman","Hungaro"}, viajeDeExcursionTropical1.idiomas())
+	}
+	
+	test "La cantidad de dias de los viajes de excursion tropical deben ser 3"{
+		
+		assert.equals(3, viajeDeExcursionTropical1.diasDeActividad())
+		
+	}
+	
+	test "El viaje no debe de implicar esfuerzo"{
+		
+		assert.notThat(viajeDeExcursionTropical1.implicaEsfuerzo())
+		
+	}
+	
+	test "El viaje debe servir para broncearse"{
+		
+		assert.that(viajeDeExcursionTropical1.sirveParaBroncearse())
+		
+	}
+	
+	test "El viaje no deberia ser interesante"{
+		assert.that(viajeDeExcursionTropical1.esInteresante())
+	}
+	
+}
+
+describe "Test de viaje de salida de trekking"{
+	
+	const salidaDeTrekking1 = new SalidaTrekking(idiomas =#{"Espaniol,Frances"},cantKmsSenderos = 100,diasDeSolAlAnio = 130)
+	
+	test "El idioma del la salida de trekking debe ser espaniol y frances"{
+		
+		assert.equals(#{"Espaniol,Frances"}, salidaDeTrekking1.idiomas())
+	}
+	
+	test "La cantidad de dias del viaje de trekking deben ser 2"{
+		
+		assert.equals(2, salidaDeTrekking1.diasDeActividad())
+		
+	}
+	
+	test "El viaje debe de implicar esfuerzo"{
+		
+		assert.that(salidaDeTrekking1.implicaEsfuerzo())
+		
+	}
+	
+	test "El viaje no debe servir para broncearse"{
+		
+		assert.notThat(salidaDeTrekking1.sirveParaBroncearse())
+		
+	}
+	
+	test "El viaje no deberia ser interesante"{
+		assert.notThat(salidaDeTrekking1.esInteresante())
+	}
+}
+
+describe "Test de Taller Literario"{
+	
+	const sobreHeroesYTumbas = new Libro(idioma="español",cantPaginas=544,nombreDelAutor="Sabato")
+	const ficciones = new Libro(idioma="español",cantPaginas=222, nombreDelAutor="Borges")
+	
+	const tallerLiterario = new TallerLiterario(librosEnQueTrabaja=#{sobreHeroesYTumbas,ficciones})
+	
+	test "todos los libros en los que trabaja el taller son español" {
+		assert.equals(#{"español"},tallerLiterario.idiomas())
+	}
+	
+	test "como el taller tiene 2 libros, los dias de actividad deben ser 3" {
+		assert.equals(3,tallerLiterario.diasDeActividad())
+	}
+	
+	test "en el taller el libro sobreHeroesYTumbas tiene más de 500 paginas" {
+		assert.that(tallerLiterario.tieneLibroConMasDe500Pag())
+	}
+	
+	test "los autores de libros en el taller son Borges y Sabato" {
+		assert.equals(#{"Borges","Sabato"},tallerLiterario.autoresDeLibros())
+	}
+	
+	test "los libros son de distinto autor" {
+		assert.notThat(tallerLiterario.todosLosLibrosSonDelMismoAutor())
+	}
+	
+	test "en el taller hay más de 1 libro" {
+		assert.that(tallerLiterario.hayMasDeUnLibro())
+	}
+	
+	test "implica esfuerzo porque hay un libro de más de 500 pag" {
+		assert.that(tallerLiterario.implicaEsfuerzo())
+	}
+	
+	
+}
