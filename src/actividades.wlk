@@ -51,3 +51,23 @@ class ClaseDeGimnasia inherits Actividad {
 	override method implicaEsfuerzo() = true
 	override method sirveParaBroncearse() = false
 }
+
+class TallerLiterario{
+    const librosEnQueTrabaja = #{}
+	
+	method idiomas() = librosEnQueTrabaja.map({l => l.idioma()}).asSet()
+    method diasDeActividad() = librosEnQueTrabaja.size() + 1
+    method tieneLibroConMasDe500Pag() = librosEnQueTrabaja.any({l => l.cantPaginas() > 500})
+    method autoresDeLibros() = librosEnQueTrabaja.map({l => l.nombreDelAutor()}).asSet()
+    method todosLosLibrosSonDelMismoAutor() = self.autoresDeLibros().size() == 1
+    method hayMasDeUnLibro() = librosEnQueTrabaja.size() > 1
+    method implicaEsfuerzo() = self.tieneLibroConMasDe500Pag() or (self.todosLosLibrosSonDelMismoAutor() and self.hayMasDeUnLibro())
+    method sirveParaBroncearse() = false
+    method esRecomdadaPara(unSocio) = unSocio.idiomas().size() > 1
+}
+
+class Libro{
+    const property idioma
+    const property cantPaginas
+    const property nombreDelAutor
+}
